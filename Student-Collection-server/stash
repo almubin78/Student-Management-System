@@ -1,0 +1,17 @@
+[33mcommit 63c7505a15b93ed0b4705dd8ac66f5a069627a43[m[33m ([m[1;36mHEAD -> [m[1;32mSERVER-SIDE[m[33m, [m[1;31morigin/SERVER-SIDE[m[33m)[m
+Author: Al Mubin <almubin78@gmail.com>
+Date:   Sun Jan 12 19:38:21 2025 +0600
+
+    delete some era
+
+[33mcommit c0c984941ba8b218c4c4c33e438b64bd3feab4ff[m
+Author: Al Mubin <almubin78@gmail.com>
+Date:   Sun Jan 12 19:33:01 2025 +0600
+
+    try to send data to server
+
+[33mcommit 66641f487c169b18bdee502492ca00c20e7bfd17[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/CLIENT-SIDE[m[33m, [m[1;32mmain[m[33m, [m[1;32mCLIENT-SIDE[m[33m)[m
+Author: almubin78 <88171222+almubin78@users.noreply.github.com>
+Date:   Sun Jan 12 19:14:19 2025 +0600
+
+    Initial commit

@@ -1,0 +1,41 @@
+[
+    {
+      "name": "Lamiya",
+      "code": "901",
+      "imgLink": "https://i.ibb.co/WGXGHLQ/lamiya-2.jpg",
+      "fathersName": "Father Name 1",
+      "joinDate": "2024-05-01",   
+      "Gender": "female",
+      "contact":"",
+      "primaryDue":0,
+      "finalDue":[],
+      "Attendance":[]
+    },
+    {
+      "name": "Kousik",
+      "code": "902",
+      "imgLink": "https://i.ibb.co/tD1gX3b/kousik.png",
+      "fathersName": "Father Name 1",
+      "joinDate": "2024-06-01",   
+      "Gender": "male",
+      "contact":"",
+      "primaryDue":0,
+      "finalDue":[],
+      "Attendance":[]
+    },
+    {
+      "name": "Sathi",
+      "code": "903",
+      "imgLink": "https://i.ibb.co/ng54MVX/sathi.jpg",
+      "fathersName": "Father Name 1",
+      "joinDate": "2024-06-01",   
+      "Gender": "female",
+      "contact":"",
+      "primaryDue":0,
+      "finalDue":[],
+      "Attendance":[]
+    }
+    
+    
+    
+  ]

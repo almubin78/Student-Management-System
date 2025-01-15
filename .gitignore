@@ -1,0 +1,17 @@
+# fresh-Student-Collection-server
+# Node.js dependencies
+node_modules/
+
+# Environment files
+Student-collection-client/.env
+Student-collection-client/.env.local
+Student-Collection-server/.env
+Student-Collection-server/.env.local
+
+# Build artifacts
+Student-collection-client/build/
+Student-collection-client/public/dist
+Student-Collection-server/dist/
+
+# Logs
+*.log
