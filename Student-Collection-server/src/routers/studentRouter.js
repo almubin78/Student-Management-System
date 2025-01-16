@@ -5,6 +5,6 @@ const StudentRouter = express.Router();
 
 StudentRouter.get('/all',handleGetAllStudents)
 StudentRouter.post('/createStudent',handleCreateStudent)
-StudentRouter.post('/makeChangeForAll',handleAddSomethingToAll)
+// StudentRouter.post('/makeChangeForAll',handleAddSomethingToAll)
 
 module.exports = StudentRouter;
