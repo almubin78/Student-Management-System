@@ -1,7 +1,8 @@
-const app = require("../src/app");
-const databaseConnect = require("../src/config/database.connect");
-const { port } = require("../src/secret");
+
 const cors = require('cors');
+const app = require("./src/app");
+const databaseConnect = require("./src/config/database.connect");
+const { port } = require('./src/secret');
 
 app.use(cors());
 

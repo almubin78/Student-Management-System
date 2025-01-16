@@ -21,9 +21,15 @@ const ErrorElement = () => {
             </div>
 
 
-
+    <p>go back to</p>
             <Link to='/' className="text-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg text-sm md:text-lg animate-bounce">
-                go back to HOME page
+                 HOME page
+            </Link>
+            <Link to='/student' className="text-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg text-sm md:text-lg animate-bounce">
+                 Student page
+            </Link>
+            <Link to='/admin' className="text-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg text-sm md:text-lg animate-bounce">
+                 admin page
             </Link>
         </div>
     );

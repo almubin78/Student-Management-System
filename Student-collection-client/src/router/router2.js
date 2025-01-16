@@ -2,18 +2,23 @@ import { createBrowserRouter } from "react-router-dom";
 import RootPage from "../components/Home/RootPage";
 import HomePage from "../components/Home/HomePage";
 import ErrorElement from "../components/ErrorElement";
-import Contact from "../components/Home/OutlatePages/Contact";
-import StudentsHome from "../components/StudentsDashboard/StudentsHome";
-import AdminHome from "../components/Admin/AdminHome";
+//admin dashboard
+
 import AttendanceHome from "../components/Admin/Attendence/AttendanceHome";
+import AdminHome from "../components/Admin/AdminHome";
 import Messages from "../components/Admin/Messages/Messages";
 import SalaryStatus from "../components/Admin/SalaryStutus/SalaryStatus";
 import Records from "../components/Admin/Records/Records";
-import LoginPage from "../components/Home/OutlatePages/Login/LoginPage";
-import Register from "../components/Home/OutlatePages/Register/Register";
+//student dashboard
+import StudentsHome from "../components/StudentsDashboard/StudentsHome";
 import StudentProfile from "../components/StudentsDashboard/Profile/StudentProfile";
 import Exercise from "../components/StudentsDashboard/Exercise/Exercise";
 import Settings from "../components/StudentsDashboard/Settings/Settings";
+//other pages
+import Contact from "../components/Home/OutlatePages/Contact";
+import LoginPage from "../components/Home/OutlatePages/Login/LoginPage";
+import Register from "../components/Home/OutlatePages/Register/Register";
+
 
 const router2 = createBrowserRouter([
     {

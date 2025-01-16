@@ -36,30 +36,23 @@ const LoginPage = () => {
     // console.log(selectedStudent,'==this is selected');
     const handleLogin = async (e) => {
         e.preventDefault();
-
+    
         if (!selectedStudent) {
             setError("Please enter a valid phone number first.");
             return;
         }
-
+    
         if (password === selectedStudent.password) {
-            try {
-                if (selectedStudent.roll === "admin") {
-                    navigate("/admin");
-                } else if (selectedStudent.roll === "student") {
-                    const res = await axiosInstance.post('/students/createStudent', selectedStudent);
-                    console.log(res.data, 'res.data from server');
-
-                    // Save the token to local storage
-                    localStorage.setItem("authToken", res.data);
-
-                    navigate("/student");
-                } else {
-                    setError("Invalid user role.");
-                }
-            } catch (err) {
-                console.error("Error during login:", err);
-                setError("An error occurred during login.");
+            const res = await axiosInstance.post('/students/createStudent', selectedStudent);
+            localStorage.setItem("authToken", res.data.token); // Store token
+            localStorage.setItem("userRole", selectedStudent.roll); // Store role
+    
+            if (selectedStudent.roll === "admin") {
+                navigate("/admin");
+            } else if (selectedStudent.roll === "student") {
+                navigate("/student");
+            } else {
+                setError("Invalid user role.");
             }
         } else {
             setError("Invalid credentials.");

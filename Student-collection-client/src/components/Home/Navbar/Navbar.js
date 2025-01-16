@@ -40,7 +40,7 @@ const Navbar = () => {
                             <div className='flex items-center justify-start'>
 
                                 <Link to="/courses" className="px-4 py-2 hover:bg-blue-500 rounded-md md:ml-4">
-                                    কোর্স সমূহ
+                                    ব্যাচ সমূহ
                                 </Link>
                             </div>
                             <div className='flex items-center justify-start'>
