@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // Ensure dotenv is loaded
-
-const databaseUrl = process.env.MONGODB_DRIVER_URL;
+require('dotenv').config(); // Load environment variables
 
 const databaseConnect = async () => {
+    if (mongoose.connection.readyState === 1) {
+        console.log('Already connected to MongoDB');
+        return;
+    }
+
     try {
-        await mongoose.connect(databaseUrl, {
+        await mongoose.connect(process.env.MONGODB_DRIVER_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-
-        console.log('Connected to the database');
-
-        mongoose.connection.on('error', (error) => {
-            console.error('Database connection error:', error);
-        });
+        console.log('Connected to MongoDB');
     } catch (error) {
-        console.error('Failed to connect to database:', error.message);
-        console.error('Stack Trace:', error.stack);
+        console.error('Database connection error:', error);
+        throw new Error('Failed to connect to MongoDB');
     }
 };
 

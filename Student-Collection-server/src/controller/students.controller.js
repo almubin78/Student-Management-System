@@ -1,3 +1,4 @@
+const databaseConnect = require("../config/database.connect");
 const { createJsonWebToken } = require("../helper/jsonWebToken");
 const StudentCollection = require("../models/StudentModel");
 const { json_key_active } = require("../secret");
@@ -20,9 +21,7 @@ require('dotenv').config(); // Ensure dotenv is loaded
 // };
 const handleGetAllStudents = async (req, res) => {
     try {
-        if (!mongoose.connection.readyState) {
-            await mongoose.connect(process.env.MONGODB_DRIVER_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-        }
+        await databaseConnect()
         const allStudents = await StudentCollection.find();
         res.json(allStudents);
     } catch (error) {
