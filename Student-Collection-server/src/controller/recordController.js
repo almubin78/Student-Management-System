@@ -5,7 +5,8 @@ const RecordCollection = require("../models/RecordModel");
 // Fetch all records
 const getRecords = async (req, res) => {
   try {
-    const records = await RecordCollection.find();
+    // const records = await RecordCollection.find();
+    const records = RecordCollection.find();
     // const allStudents = await StudentCollection.find();
     res.status(200).json({records});
   } catch (error) {

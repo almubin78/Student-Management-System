@@ -4,6 +4,12 @@ const app = require("./src/app");
 const databaseConnect = require("./src/config/database.connect");
 const { port } = require('./src/secret');
 
+const corsConfig = {
+    origin:"*",
+    Credential:true,
+    methods:["GET","POST","PUT","DELETE"]
+}
+app.options('',cors(corsConfig))
 app.use(cors());
 
 
