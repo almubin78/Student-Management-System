@@ -1,4 +1,4 @@
-npm i 
+# npm i 
 ```
 axios 
 react-fast-marquee 
@@ -8,11 +8,12 @@ sweetalert2
 jwt-decode
 ```
 
+## web links
+* [jwt-decode](https://www.npmjs.com/package/jwt-decode?activeTab=readme)
+
 
 
 
 ## Api collections what is help me to build this
-```
-https://github.com/public-apis/public-apis?tab=readme-ov-file#test-data
-```
+[Api Collection Github](https://github.com/public-apis/public-apis?tab=readme-ov-file#test-data)
 
