@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../hooks/useAxiosSecure";
 
 const AttendanceTable = () => {
+  const [loading,setLoading] = useState(true) 
   const [studentsData, setStudentsData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [presentStudents, setPresentStudents] = useState([]);
@@ -16,7 +17,7 @@ console.log(studentsData,attendanceData,filteredData,presentStudents,'studentsDa
         const { students, attendance } = res.data;
 
         setStudentsData(students);
-
+        setLoading(false)
         const present = attendance
           .filter((record) => record.status === "Present")
           .map((record) => record.studentId);
@@ -77,6 +78,26 @@ console.log(studentsData,attendanceData,filteredData,presentStudents,'studentsDa
     }
 
   }
+  if (loading) {
+    return (
+        <>
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+                {/* Spinner */}
+                <div className="relative animate-[spin_5s_linear_infinite] rounded-full h-64 w-64 border-t-4 border-blue-500 border-opacity-75 mb-8">
+                    {/* Circular Text */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative">
+                            <h3 className="text-gray-600 text-lg font-medium animate-pulse border-b-2 border-blue-500 p-2 rounded-full text-center w-48">
+                                Please Wait!! <br /> তথ্য লোড করতেছি।
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
 
   return (
     <div className="mt-6">
