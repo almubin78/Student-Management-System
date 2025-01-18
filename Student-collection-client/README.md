@@ -7,7 +7,10 @@ sweetalert2
 -D tailwindcss (npx tailwindcss init)
 jwt-decode
 ```
-
+## integration
+### local Storage
+### tailwind
+### axios secure
 ## web links
 * [jwt-decode](https://www.npmjs.com/package/jwt-decode?activeTab=readme)
 
