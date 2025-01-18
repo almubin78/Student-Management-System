@@ -49,7 +49,7 @@ const LoginPage = () => {
             const token = await res.data;
             const decoded = jwtDecode(token);
             console.log(decoded.newStudentCode,'decoded.newStudentCode the data from login page');
-            localStorage.setItem("authToken", res.data.token); // Store token
+            localStorage.setItem("authToken", res.data); // Store token
             localStorage.setItem("userRole", selectedStudent.roll); // Store role
             localStorage.setItem("userId", decoded.newStudentCode); // Store code
     
