@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../hooks/useAxiosSecure";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -9,6 +10,7 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const [selectedStudent, setSelectedStudent] = useState(null);
+
 
     const handlePhoneNumberBlur = async () => {
         try {
@@ -43,8 +45,13 @@ const LoginPage = () => {
     
         if (password === selectedStudent.password) {
             const res = await axiosInstance.post('/students/createStudent', selectedStudent);
+            
+            const token = await res.data;
+            const decoded = jwtDecode(token);
+            console.log(decoded.newStudentCode,'decoded.newStudentCode the data from login page');
             localStorage.setItem("authToken", res.data.token); // Store token
             localStorage.setItem("userRole", selectedStudent.roll); // Store role
+            localStorage.setItem("userId", decoded.newStudentCode); // Store code
     
             if (selectedStudent.roll === "admin") {
                 navigate("/admin");

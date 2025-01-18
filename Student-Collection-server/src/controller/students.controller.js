@@ -4,21 +4,6 @@ const StudentCollection = require("../models/StudentModel");
 const { json_key_active } = require("../secret");
 require('dotenv').config(); // Ensure dotenv is loaded
 
-// const databaseUrl = process.env.MONGODB_DRIVER_URL;
-// const handleGetAllStudents = async (req, res) => {
-//     try {
-//         const allStudents = await StudentCollection.find();
-//         if (allStudents.length === 0) {
-//             console.log('No students found.');
-//         } else {
-//             // console.log('Students:', allStudents);
-//         }
-//         res.json(allStudents);
-//     } catch (error) {
-//         // console.error('Error fetching students:', error);
-//         res.status(500).json({ message: 'Error fetching students' });
-//     }
-// };
 const handleGetAllStudents = async (req, res) => {
     try {
         await databaseConnect()
