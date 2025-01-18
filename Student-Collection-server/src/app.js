@@ -28,25 +28,10 @@ app.use(morgan('dev'));
 
 // Router call
 app.get('/',(req,res)=>{
-    res.send('ব্রেইন পরিবর্তনশীল')
+    res.send('ব্রেইন পরিবর্তনশীল,দুর্বল Student বলে কোন শব্দ নেই।')
 })
 
-//
-require('dotenv').config();
-const mongoose = require('mongoose');
 
-app.get('/all', async (req, res) => {
-    try {
-        if (!mongoose.connection.readyState) {
-            await mongoose.connect(process.env.MONGODB_DRIVER_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-        }
-        const allStudents = await StudentCollection.find();
-        res.json(allStudents);
-    } catch (error) {
-        // console.error('Error fetching students:', error);
-        res.status(500).json({ message: 'একেবারে মেইন পেইজ এ ' });
-    }
-})
 //
 app.use('/message',MessageRouter);
 app.use('/students',StudentRouter);
