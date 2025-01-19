@@ -14,6 +14,17 @@ const handleGetAllStudents = async (req, res) => {
         res.status(500).json({ message: 'Error fetching students' });
     }
 };
+const handleGetSingleStudents = async (req, res) => {
+    try {
+        await databaseConnect()
+        const {id} =req.params.userId
+        const student = await StudentCollection.findOne(id);
+        res.json(student);
+    } catch (error) {
+        console.error('Error fetching students:', error);
+        res.status(500).json({ message: 'Error fetching students' });
+    }
+};
 
 const handleCreateStudent = async (req, res) => {
     const newStudentCode = req.body.code;
@@ -32,4 +43,5 @@ const handleCreateStudent = async (req, res) => {
 module.exports = {
     handleGetAllStudents,
     handleCreateStudent,
+    handleGetSingleStudents
 }

@@ -11,6 +11,7 @@ const StudentProfile = () => {
         result: 'A+',
         feeStatus: 'Paid',
     });
+
     const handleSetting = ()=>{
         goTo('/student/settings')
     }
