@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 const StudentProfile = () => {
     const goTo = useNavigate()
     const [student, setStudent] = useState({
-        image: 'https://i.ibb.co/ynXnSZN/mottalib.jpg', // Placeholder image
-        name: 'John Doe',
-        classDetails: 'Class 10 - Section A',
-        code: 'ST12345',
-        result: 'A+',
-        feeStatus: 'Paid',
+        // image: 'https://i.ibb.co/ynXnSZN/mottalib.jpg', // Placeholder image
+        // name: 'John Doe',
+        // classDetails: 'Class 10 - Section A',
+        // code: 'ST12345',
+        // result: 'A+',
+        // feeStatus: 'Paid',
     });
 
     const handleSetting = ()=>{
