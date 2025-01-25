@@ -8,11 +8,13 @@ const databaseConnect = async () => {
     }
 
     try {
-        await mongoose.connect(process.env.MONGODB_DRIVER_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log('Connected to MongoDB');
+        await mongoose.connect(process.env.MONGODB_DRIVER_URL, 
+        //     {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true
+        // }
+    );
+        console.log('Connected to MongoDB in database.connect');
     } catch (error) {
         console.error('Database connection error:', error);
         throw new Error('Failed to connect to MongoDB');
