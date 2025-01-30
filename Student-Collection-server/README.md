@@ -1,1 +1,6 @@
-# Private-Management-With-MERN
+# Private-Management-System
+## 
+* Node
+* Mongodb
+* Express
+* MVC formate

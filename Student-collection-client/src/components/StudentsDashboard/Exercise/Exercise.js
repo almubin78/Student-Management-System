@@ -1,9 +1,10 @@
 import React from 'react';
+import MotionCalculator from './MotionCalculator';
 
 const Exercise = () => {
     return (
         <div>
-            exercise area
+            <MotionCalculator/>
         </div>
     );
 };
