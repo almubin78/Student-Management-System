@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const MotionCalculator = () => {
   const [calculationType, setCalculationType] = useState('');
+  const [method, setMethod] = useState('');
   const [u, setU] = useState('');
   const [v, setV] = useState('');
   const [a, setA] = useState('');
@@ -21,44 +22,51 @@ const MotionCalculator = () => {
     const time = parseFloat(t);
     const displacement = parseFloat(s);
 
-    switch (calculationType) {
-      case 's':
-        if (!isNaN(initialVelocity) && !isNaN(acceleration) && !isNaN(time)) {
-          setResult((initialVelocity * time + 0.5 * acceleration * time * time).toFixed(2));
+    switch (method) {
+      case 's1':
+        if (!isNaN(v) && !isNaN(t)) {
+          setResult((v * t).toFixed(2));
         } else {
-          setError('Provide valid inputs for s calculation.');
+          setError('Provide valid inputs for v and t.');
         }
         break;
-      case 't':
-        if (!isNaN(initialVelocity) && !isNaN(acceleration) && !isNaN(displacement)) {
-          const discriminant = initialVelocity * initialVelocity + 2 * acceleration * displacement;
-          if (discriminant < 0) {
-            setError('No real solution for time.');
-          } else {
-            const t1 = (-initialVelocity + Math.sqrt(discriminant)) / acceleration;
-            const t2 = (-initialVelocity - Math.sqrt(discriminant)) / acceleration;
-            setResult(`t1: ${t1.toFixed(2)}, t2: ${t2.toFixed(2)}`);
-          }
+      case 's2':
+        if (!isNaN(u) && !isNaN(a) && !isNaN(t)) {
+          setResult((u * t + 0.5 * a * t * t).toFixed(2));
         } else {
-          setError('Provide valid inputs for t calculation.');
+          setError('Provide valid inputs for u, a, and t.');
         }
         break;
-      case 'a':
-        if (!isNaN(initialVelocity) && !isNaN(finalVelocity) && !isNaN(displacement)) {
-          setResult(((finalVelocity * finalVelocity - initialVelocity * initialVelocity) / (2 * displacement)).toFixed(2));
+      case 's3':
+        if (!isNaN(v) && !isNaN(u) && !isNaN(a) && a !== 0) {
+          setResult(((v * v - u * u) / (2 * a)).toFixed(2));
         } else {
-          setError('Provide valid inputs for a calculation.');
+          setError('Provide valid inputs for v, u, and a (a ≠ 0).');
         }
         break;
-      case 'v':
-        if (!isNaN(initialVelocity) && !isNaN(acceleration) && !isNaN(time)) {
-          setResult((initialVelocity + acceleration * time).toFixed(2));
+      case 'v1':
+        if (!isNaN(s) && !isNaN(t)) {
+          setResult((s / t).toFixed(2));
         } else {
-          setError('Provide valid inputs for v calculation.');
+          setError('Provide valid inputs for s and t.');
+        }
+        break;
+      case 'v2':
+        if (!isNaN(u) && !isNaN(a) && !isNaN(t)) {
+          setResult((u + a * t).toFixed(2));
+        } else {
+          setError('Provide valid inputs for u, a, and t.');
+        }
+        break;
+      case 'v3':
+        if (!isNaN(u) && !isNaN(a) && !isNaN(s)) {
+          setResult(Math.sqrt(u * u + 2 * a * s).toFixed(2));
+        } else {
+          setError('Provide valid inputs for u, a, and s.');
         }
         break;
       default:
-        setError('Please select a valid calculation type.');
+        setError('Please select a valid method.');
     }
   };
 
@@ -66,56 +74,55 @@ const MotionCalculator = () => {
     <div className="max-w-md mx-auto p-4 border rounded shadow-lg">
       <h2 className="text-xl font-bold mb-4">Motion Calculator</h2>
       <div className="mb-4">
-        <label className="block mb-1">Select what to calculate:</label>
-        <select 
-          value={calculationType} 
-          onChange={(e) => setCalculationType(e.target.value)} 
+        <label className="block mb-1">What do you want to calculate?</label>
+        <select
+          value={calculationType}
+          onChange={(e) => { setCalculationType(e.target.value); setMethod(''); }}
           className="border rounded p-2 w-full"
         >
           <option value="">Select...</option>
           <option value="s">Displacement (s)</option>
-          <option value="t">Time (t)</option>
-          <option value="a">Acceleration (a)</option>
           <option value="v">Final Velocity (v)</option>
         </select>
       </div>
-      <form onSubmit={handleCalculate} className="space-y-4">
-        {(calculationType !== 'v') && (
-          <div>
-            <label className="block mb-1">Initial Velocity (u):</label>
-            <input type="number" value={u} onChange={(e) => setU(e.target.value)} className="border rounded p-2 w-full" placeholder="Enter u" />
-          </div>
-        )}
-        {(calculationType === 'v' || calculationType === 'a') && (
-          <div>
-            <label className="block mb-1">Final Velocity (v):</label>
-            <input type="number" value={v} onChange={(e) => setV(e.target.value)} className="border rounded p-2 w-full" placeholder="Enter v" />
-          </div>
-        )}
-        {(calculationType !== 'a') && (
-          <div>
-            <label className="block mb-1">Acceleration (a):</label>
-            <input type="number" value={a} onChange={(e) => setA(e.target.value)} className="border rounded p-2 w-full" placeholder="Enter a" />
-          </div>
-        )}
-        {(calculationType !== 't') && (
-          <div>
-            <label className="block mb-1">Time (t):</label>
-            <input type="number" value={t} onChange={(e) => setT(e.target.value)} className="border rounded p-2 w-full" placeholder="Enter t" />
-          </div>
-        )}
-        {(calculationType === 's' || calculationType === 't') && (
-          <div>
-            <label className="block mb-1">Displacement (s):</label>
-            <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="border rounded p-2 w-full" placeholder="Enter s" />
-          </div>
-        )}
-        <button type="submit" className="bg-blue-500 text-white rounded p-2 w-full">
-          Calculate
-        </button>
-      </form>
-      {result && <div className="mt-4">Result: {result}</div>}
-      {error && <div className="mt-4 text-red-500">{error}</div>}
+      {calculationType && (
+        <div className="mb-4">
+          <label className="block mb-1">Select method:</label>
+          <select
+            value={method}
+            onChange={(e) => setMethod(e.target.value)}
+            className="border rounded p-2 w-full"
+          >
+            {calculationType === 's' && (
+              <>
+                <option value="s1">s = vt (a = 0)</option>
+                <option value="s2">s = ut + 0.5at²</option>
+                <option value="s3">s = (v² - u²) / (2a)</option>
+              </>
+            )}
+            {calculationType === 'v' && (
+              <>
+                <option value="v1">v = s / t (a = 0)</option>
+                <option value="v2">v = u + at</option>
+                <option value="v3">v = √(u² + 2as)</option>
+              </>
+            )}
+          </select>
+        </div>
+      )}
+      {method && (
+        <form onSubmit={handleCalculate}>
+          {(method === 's1' || method === 's1') && <input type="number" value={t} onChange={(e) => setT(e.target.value)} placeholder="Time (t)" />}
+          {(method === 's1') && <input type="number" value={v} onChange={(e) => setV(e.target.value)} placeholder="Final Velocity (v)" />}
+          {(method === 's2' || method === 'v2') && <input type="number" value={u} onChange={(e) => setU(e.target.value)} placeholder="Initial Velocity (u)" />}
+          {(method === 's2' || method === 'v2') && <input type="number" value={a} onChange={(e) => setA(e.target.value)} placeholder="Acceleration (a)" />}
+          {(method === 's2') && <input type="number" value={t} onChange={(e) => setT(e.target.value)} placeholder="Time (t)" />}
+          {(method === 's3' || method === 'v3') && <input type="number" value={s} onChange={(e) => setS(e.target.value)} placeholder="Displacement (s)" />}
+          <button type="submit">Calculate</button>
+        </form>
+      )}
+      {result && <div>Result: {result}</div>}
+      {error && <div>{error}</div>}
     </div>
   );
 };
