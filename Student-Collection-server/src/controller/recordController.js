@@ -33,26 +33,45 @@ const updateMonthData = async (req, res) => {
 };
 
 // Automatically create month entry
+// const createMonthData = async () => {
+//   const currentMonth = new Date().toLocaleString("default", { month: "long" }).toLowerCase();
+//   const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1))
+//     .toLocaleString("default", { month: "long" })
+//     .toLowerCase();
+
+//   try {
+//     const records = await RecordCollection.find();
+
+//     records.forEach((record) => {
+//       if (!record.month.has(lastMonth)) {
+//         record.month.set(lastMonth, { examResult: {}, presentStatus: [] });
+//         record.save();
+//       }
+//     });
+//     console.log("Monthly data created successfully!", currentMonth, lastMonth);
+//   } catch (error) {
+//     console.error("Error creating monthly data:", error);
+//   }
+// };
+
+
+//testing
 const createMonthData = async () => {
-  const currentMonth = new Date().toLocaleString("default", { month: "long" }).toLowerCase();
-  const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1))
-    .toLocaleString("default", { month: "long" })
-    .toLowerCase();
+ 
 
   try {
-    const records = await RecordCollection.find();
-
-    records.forEach((record) => {
-      if (!record.month.has(lastMonth)) {
-        record.month.set(lastMonth, { examResult: {}, presentStatus: [] });
-        record.save();
-      }
-    });
-    console.log("Monthly data created successfully!", currentMonth, lastMonth);
+    
+    
+    console.log("Monthly data created successfully!");
   } catch (error) {
     console.error("Error creating monthly data:", error);
   }
 };
+
+
+
+
+
 const addRecord = async (req, res) => {
   const { studentCode, month, previousStatus } = req.body;
 
