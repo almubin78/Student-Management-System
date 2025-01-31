@@ -40,6 +40,6 @@ app.use('/records',recordRouter);
 app.use('/data',allDataRouter);
 
 
-
-
+const today = new Date();
+console.log(new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate());
 module.exports = app;

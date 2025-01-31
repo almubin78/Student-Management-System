@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = require("./src/app");
 const databaseConnect = require("./src/config/database.connect");
 const { port } = require('./src/secret');
-// const { createMonthData } = require('./src/controller/recordController');
+const { createMonthData } = require('./src/controller/recordController');
 
 const corsConfig = {
     origin:"*",
@@ -13,7 +13,7 @@ const corsConfig = {
 app.options('',cors(corsConfig))
 app.use(cors());
 
-// createMonthData()
+createMonthData()
 
 app.listen(port,()=>{
     databaseConnect()
