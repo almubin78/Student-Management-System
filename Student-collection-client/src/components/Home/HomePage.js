@@ -1,10 +1,14 @@
 import React from 'react';
-import Register from './OutlatePages/Register/Register';
+// import Register from './OutlatePages/Register/Register';
+import StudentStudy from './StudentStudy';
 // import { HiArchiveBox } from "react-icons/hi2";
 // import { IconName } from "react-icons";
 
 const HomePage = () => {
     return (
+        <>
+        
+        <StudentStudy/>
         <div className='px-10 py-5'>
             <p className='bg-green-200 my-2 p-2 rounded'>
                 দুনিয়াতে <span className="text-md text-pink-800 font-bold">মেধাবী ছাত্র/ছাত্রী</span> বলতে কিছু নাই। পরিশ্রমী Students দিনে কয়েক ঘন্টার রুটিন অনুসরন করে যে দক্ষতা এবং জ্ঞান অর্জন করে, আইলসা Students সেটাকেই মেধা  বলে।
@@ -83,8 +87,10 @@ const HomePage = () => {
                 </div>
             </div>
 
-        <Register/>
+        {/* <Register/> */}
         </div>
+        </>
+        
     );
 };
 
