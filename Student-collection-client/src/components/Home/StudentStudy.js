@@ -25,7 +25,7 @@ const StudentStudy = () => {
     // Set the current student
     useEffect(() => {
       if (students.length > 0) {
-        const nextStudent = students.find(student => !answeredStudents.includes(student._id));
+        const nextStudent = students.find(student => !answeredStudents.includes(student?._id));
         setCurrentStudent(nextStudent);
       }
     }, [students, answeredStudents]);
@@ -44,13 +44,13 @@ const StudentStudy = () => {
   
     // Move to the next student
     const moveToNextStudent = () => {
-      setAnsweredStudents(prev => [...prev, currentStudent._id]);
+      setAnsweredStudents(prev => [...prev, currentStudent?._id]);
       setTimeLeft(300); // Reset timer
     };
   
     // Handle answer submission
     const handleSubmit = async (answers) => {
-      await axios.post('/api/answers', { studentId: currentStudent._id, answers });
+      await axios.post('/api/answers', { studentId: currentStudent?._id, answers });
       moveToNextStudent();
     };
   

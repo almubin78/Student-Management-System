@@ -35,7 +35,7 @@ const Records = () => {
 
           return (
             <div
-              key={student._id}
+              key={student?._id}
               className="card border p-4 shadow-md hover:shadow-lg cursor-pointer"
               onClick={() => console.log(`Fetch full data for student code: ${student.studentCode}`)}
             >

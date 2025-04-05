@@ -45,6 +45,12 @@ const Navbar = () => {
                             </div>
                             <div className='flex items-center justify-start'>
 
+                                <Link to="/routine" className="px-4 py-2 hover:bg-blue-500 rounded-md md:ml-4">
+                                    Routine
+                                </Link>
+                            </div>
+                            <div className='flex items-center justify-start'>
+
                                 <Link to="/login" className="px-4 py-2 hover:bg-blue-500 rounded-md md:ml-4">
                                     Login
                                 </Link>
