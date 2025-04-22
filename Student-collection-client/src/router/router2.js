@@ -19,6 +19,8 @@ import Contact from "../components/Home/OutlatePages/Contact";
 import LoginPage from "../components/Home/OutlatePages/Login/LoginPage";
 import Register from "../components/Home/OutlatePages/Register/Register";
 import MotionSimulator from "../components/StudentsDashboard/PlayAnimation/MotionSimulator";
+import CollisionSimulator from "../components/StudentsDashboard/PlayAnimation/CollisionSimulator";
+import InelasticCollisionSimulator from "../components/StudentsDashboard/PlayAnimation/InelasticCollisionSimulator";
 
 
 const router2 = createBrowserRouter([
@@ -67,6 +69,14 @@ const router2 = createBrowserRouter([
                 path:'/student/play',
                 element:<MotionSimulator/>
             },
+            {
+                path:'/student/play2',
+                element:<InelasticCollisionSimulator/>
+            },
+            // {
+            //     path:'/student/play2',
+            //     element:<CollisionSimulator/>
+            // },
 
             
         ]
