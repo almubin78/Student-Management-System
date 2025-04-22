@@ -18,6 +18,7 @@ import Settings from "../components/StudentsDashboard/Settings/Settings";
 import Contact from "../components/Home/OutlatePages/Contact";
 import LoginPage from "../components/Home/OutlatePages/Login/LoginPage";
 import Register from "../components/Home/OutlatePages/Register/Register";
+import MotionSimulator from "../components/StudentsDashboard/PlayAnimation/MotionSimulator";
 
 
 const router2 = createBrowserRouter([
@@ -62,6 +63,11 @@ const router2 = createBrowserRouter([
                 path:'/student/settings',
                 element:<Settings/>
             },
+            {
+                path:'/student/play',
+                element:<MotionSimulator/>
+            },
+
             
         ]
     },

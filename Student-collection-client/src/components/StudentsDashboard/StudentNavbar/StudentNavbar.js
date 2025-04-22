@@ -94,6 +94,18 @@ const StudentNavbar = () => {
                         <SettingsIcon />
                         সেটিংস
                     </NavLink>
+                    {/* play */}
+                    <NavLink
+                        to="/student/play"
+                        className={({ isActive }) =>
+                            `flex items-center gap-2 px-4 py-2 rounded-md ${
+                                isActive ? 'bg-aqua text-pink-900' : 'hover:bg-blue-500'
+                            }`
+                        }
+                    >
+                        <SettingsIcon />
+                        প্লে
+                    </NavLink>
                 </div>
 
                 {/* Logout */}
