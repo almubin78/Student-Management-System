@@ -1,53 +1,87 @@
 import React, { useState, useRef, useEffect } from "react";
 
 export default function MotionSimulator() {
-  const [distance, setDistance] = useState(1000); // in meters
+  const [distance, setDistance] = useState(1000); // meters
   const [initialVelocity, setInitialVelocity] = useState(5); // m/s
   const [acceleration, setAcceleration] = useState(2); // m/s²
-  const [running, setRunning] = useState(false);
-  const [position, setPosition] = useState(0);
-  const [time, setTime] = useState(0);
+  const [numObjects, setNumObjects] = useState(1);
 
-  const intervalRef = useRef(null);
+  const [running, setRunning] = useState(false);
+  const [time, setTime] = useState(0);
+  const [positions, setPositions] = useState([0, 0]);
+
+  const requestRef = useRef(null);
+  const startTimeRef = useRef(null);
 
   const handleStart = () => {
     setRunning(true);
     setTime(0);
-    setPosition(0);
+    setPositions([0, 0]);
+    startTimeRef.current = null;
 
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setTime(prev => {
-        const t = prev + 0.1;
-        const newPosition = initialVelocity * t + 0.5 * acceleration * t * t;
-        if (newPosition >= distance) {
-          clearInterval(intervalRef.current);
-          setRunning(false);
-          return prev;
-        }
-        setPosition(newPosition);
-        return t;
-      });
-    }, 100);
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const t = (timestamp - startTimeRef.current) / 1000;
+
+      setTime(t);
+
+      const newPositions = [
+        initialVelocity * t + 0.5 * acceleration * t * t,
+        numObjects === 2 ? (initialVelocity + 3) * t + 0.5 * (acceleration + 1) * t * t : 0,
+      ];
+
+      setPositions(newPositions);
+
+      if (Math.max(...newPositions) < distance) {
+        requestRef.current = requestAnimationFrame(animate);
+      } else {
+        setRunning(false);
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+
+    cancelAnimationFrame(requestRef.current);
+    requestRef.current = requestAnimationFrame(animate);
   };
 
   return (
     <div className="p-4 max-w-xl mx-auto space-y-4">
       <h1 className="text-xl font-bold text-center">Motion Simulator</h1>
-      
+
       <div className="grid grid-cols-1 gap-3">
-        <label htmlFor="">দুরত্ব:</label>
-        <input type="number" placeholder="Distance (m)" value={distance}
-          onChange={e => setDistance(+e.target.value)}
-          className="border p-2 rounded" />
-        <label htmlFor="">আদিবেগঃ</label>
-        <input type="number" placeholder="Initial Velocity (m/s)" value={initialVelocity}
-          onChange={e => setInitialVelocity(+e.target.value)}
-          className="border p-2 rounded" />
-        <label htmlFor="">ত্বরণ</label>
-        <input type="number" placeholder="Acceleration (m/s²)" value={acceleration}
-          onChange={e => setAcceleration(+e.target.value)}
-          className="border p-2 rounded" />
+        <label>দূরত্ব:</label>
+        <input
+          type="number"
+          value={distance}
+          onChange={(e) => setDistance(+e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <label>আদিবেগঃ</label>
+        <input
+          type="number"
+          value={initialVelocity}
+          onChange={(e) => setInitialVelocity(+e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <label>ত্বরণ:</label>
+        <input
+          type="number"
+          value={acceleration}
+          onChange={(e) => setAcceleration(+e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <label>অবজেক্ট সংখ্যা:</label>
+        <select
+          value={numObjects}
+          onChange={(e) => setNumObjects(+e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value={1}>১টি অবজেক্ট</option>
+          <option value={2}>২টি অবজেক্ট</option>
+        </select>
 
         <button
           onClick={handleStart}
@@ -57,19 +91,30 @@ export default function MotionSimulator() {
         </button>
       </div>
 
-      {/* Visual motion field */}
-      <div className="relative h-24 bg-gray-100 border rounded overflow-hidden">
-        <div
-          className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full"
-          style={{ left: `${(position / distance) * 100}%`, transition: "left 0.1s" }}
-        />
+      <div className="relative h-24 bg-gray-100 border rounded overflow-hidden mt-6">
+        {[...Array(numObjects)].map((_, index) => (
+          <div
+            key={index}
+            className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full`}
+            style={{
+              left: `${Math.min(positions[index] / distance, 1) * 100}%`,
+              backgroundColor: index === 0 ? "red" : "green",
+              transition: "none",
+            }}
+          />
+        ))}
       </div>
 
-      {/* Info Display */}
-      <div className="text-sm text-gray-600">
-        <p><strong>Time:</strong> {time.toFixed(2)} s</p>
-        <p><strong>Position:</strong> {position.toFixed(2)} m</p>
-        <p><strong>Velocity:</strong> {(initialVelocity + acceleration * time).toFixed(2)} m/s</p>
+      <div className="text-sm text-gray-600 mt-2">
+        <p><strong>সময়:</strong> {time.toFixed(2)} সেকেন্ড</p>
+        {[...Array(numObjects)].map((_, index) => (
+          <div key={index}>
+            <p>
+              <strong>অবজেক্ট {index + 1}:</strong> অবস্থান: {positions[index].toFixed(2)} মিটার,
+              গতি: {(initialVelocity + (index * 3) + (acceleration + index) * time).toFixed(2)} m/s
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
