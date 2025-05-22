@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar/Navbar';
-import PhysicsCalculator from '../StudentsDashboard/PhysicsArea/PhysicsCalculator';
+// import PhysicsCalculator from '../StudentsDashboard/PhysicsArea/PhysicsCalculator';
 // import Calculator from '../StudentsDashboard/PhysicsArea/Calculator';
 // import useAxios from '../../hooks/useAxiosSecure';
 
@@ -13,7 +13,7 @@ const RootPage = () => {
                 <Navbar />
             </div>
             {/* <Calculator/> */}
-            <PhysicsCalculator/>
+            {/* <PhysicsCalculator/> */}
             <Outlet />
             <Footer />
         </div>

@@ -21,6 +21,7 @@ import Register from "../components/Home/OutlatePages/Register/Register";
 import MotionSimulator from "../components/StudentsDashboard/PlayAnimation/MotionSimulator";
 import CollisionSimulator from "../components/StudentsDashboard/PlayAnimation/CollisionSimulator";
 import InelasticCollisionSimulator from "../components/StudentsDashboard/PlayAnimation/InelasticCollisionSimulator";
+import WeeklyRoutine from "../components/Routine/WeeklyRoutine";
 
 
 const router2 = createBrowserRouter([
@@ -46,6 +47,10 @@ const router2 = createBrowserRouter([
             {
                 path:'/contact',
                 element:<Contact/>
+            },
+            {
+                path:'/routine',
+                element:<WeeklyRoutine/>
             },
         ]
     },
