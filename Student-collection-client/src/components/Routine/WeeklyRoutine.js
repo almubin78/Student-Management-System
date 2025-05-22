@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const routine = {
   Sunday: [
@@ -16,7 +16,10 @@ const routine = {
     { time: "7:30 – 9:30", task: "Teaching" },
     { time: "9:30 – 12:00", task: "Job Preparation" },
     { time: "12:00 – 14:30", task: "Daily Work" },
-    { time: "14:30 – 20:30", task: "MERN + TypeScript/Redux/Sheet (OFF from Teaching)" },
+    {
+      time: "14:30 – 20:30",
+      task: "MERN + TypeScript/Redux/Sheet (OFF from Teaching)",
+    },
     { time: "20:30 – 22:00", task: "Coding + GitHub Push" },
     { time: "22:00 – 5:30", task: "Sleeping" },
   ],
@@ -81,12 +84,20 @@ const RoutineCard = ({ time, task }) => (
 );
 
 export default function WeeklyRoutine() {
-  const [activeDay, setActiveDay] = useState("Monday");
+  const [activeDay, setActiveDay] = useState("");
+  useEffect(() => {
+    const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+    if (days.includes(today)) {
+      setActiveDay(today);
+    } else {
+      setActiveDay("Monday");
+    }
+  }, []);
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 mb-4">
-        {days.map((day) => (
+        {days?.map((day) => (
           <button
             key={day}
             onClick={() => setActiveDay(day)}
@@ -100,8 +111,8 @@ export default function WeeklyRoutine() {
           </button>
         ))}
       </div>
-      <div className="h-[500px] overflow-y-auto bg-gray-50 p-4 rounded-xl border border-gray-200">
-        {routine[activeDay].map((entry, idx) => (
+      <div className="h-[600px] overflow-y-auto bg-gray-50 p-4 rounded-xl border border-gray-200">
+        {routine[activeDay]?.map((entry, idx) => (
           <RoutineCard key={idx} time={entry.time} task={entry.task} />
         ))}
       </div>

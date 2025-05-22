@@ -42,25 +42,25 @@ const Footer = () => {
               to="/facebook"
               className="text-gray-400 hover:text-gray-200 transition-colors"
             >
-              <i className="fab fa-facebook-f"></i>
+              <i className="fab fa-facebook-f">facebook</i>
             </Link>
             <Link
               to="/twitter"
               className="text-gray-400 hover:text-gray-200 transition-colors"
             >
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-twitter">Twitter</i>
             </Link>
             <Link
               to="/instagram"
               className="text-gray-400 hover:text-gray-200 transition-colors"
             >
-              <i className="fab fa-instagram"></i>
+              <i className="fab fa-instagram">instagram</i>
             </Link>
             <Link
               to="/linkedin"
               className="text-gray-400 hover:text-gray-200 transition-colors"
             >
-              <i className="fab fa-linkedin-in"></i>
+              <i className="fab fa-linkedin-in">Linked In</i>
             </Link>
           </div>
         </div>
