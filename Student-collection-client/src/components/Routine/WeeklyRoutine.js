@@ -69,7 +69,7 @@ const routine = {
     { time: "12:00 – 14:30", task: "Daily Work" },
     { time: "14:30 – 16:00", task: "Teaching" },
     { time: "16:00 – 20:30", task: "Teaching" },
-    { time: "20:30 – 22:00", task: "Skill Improvement (Redux/TS)" },
+    { time: "20:30 – 22:00", task: "Skill Improvement (Redux/TS/Documentation)" },
     { time: "22:00 – 5:30", task: "Sleeping" },
   ],
 };
