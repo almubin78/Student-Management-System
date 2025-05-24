@@ -19,14 +19,14 @@ const routine = {
     { time: "12:00 – 14:30", task: "Daily Work" },
     {
       time: "14:30 – 20:30",
-      task: "MERN + TypeScript/Redux/Sheet (OFF from Teaching)",
+      task: "Sheet (OFF from Teaching)",
     },
     { time: "20:30 – 22:00", task: "Coding + GitHub Push" },
     { time: "22:00 – 5:30", task: "Sleeping" },
   ],
   Tuesday: [
     { time: "5:30 – 7:30", task: "Prayer + MERN Development" },
-    { time: "7:30 – 9:30", task: "MERN or Interview Prep (Teaching OFF)" },
+    { time: "7:30 – 9:30", task: "Explore Book (Teaching OFF)" },
     { time: "9:30 – 12:00", task: "Job Preparation" },
     { time: "12:00 – 14:30", task: "Daily Work" },
     { time: "14:30 – 16:00", task: "Teaching" },
